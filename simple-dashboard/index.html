@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Robot Team</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Comic Sans MS', 'Nunito', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        .robots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .robot-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .robot-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .robot-emoji { font-size: 3rem; }
+        .robot-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .status-light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-left: auto;
+            animation: pulse 2s infinite;
+        }
+        .status-green {
+            background: #4ade80;
+            box-shadow: 0 0 10px #4ade80;
+        }
+        .status-yellow {
+            background: #fbbf24;
+            box-shadow: 0 0 10px #fbbf24;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .robot-job {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .robot-status {
+            font-size: 1.1rem;
+            color: #333;
+            padding: 10px;
+            background: #f3f4f6;
+            border-radius: 10px;
+        }
+        .money-display {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .money-display h3 { color: #666; margin-bottom: 10px; }
+        .money-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .activity-log {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .activity-log h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .log-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .log-item:last-child { border-bottom: none; }
+        .log-time { color: #999; font-size: 0.9rem; min-width: 80px; }
+        .log-emoji { font-size: 1.2rem; }
+        .log-text { color: #333; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 My Robot Team</h1>
+        <p>They work while I sleep!</p>
+    </div>
+    
+    <div class="money-display">
+        <h3>💰 Today's Money</h3>
+        <div class="money-amount" id="moneyAmount">+$0.00</div>
+    </div>
+    
+    <div class="robots-grid">
+        <div class="robot-card">
+            <div class="robot-header">
+                <span class="robot-emoji">🤖</span>
+                <span class="robot-name">Oshi Bot</span>
+                <span class="status-light status-green"></span>
+            </div>
+            <div class="robot-job">Trading Robot</div>
+            <div class="robot-status">Paper trading active</div>
+        </div>
+        
+        <div class="robot-card">
+            <div class="robot-header">
+                <span class="robot-emoji">📈</span>
+                <span class="robot-name">EMA/Kelly Bot</span>
+                <span class="status-light status-green"></span>
+            </div>
+            <div class="robot-job">Fast Trader</div>
+            <div class="robot-status">Paper trading 5-min BTC</div>
+        </div>
+        
+        <div class="robot-card">
+            <div class="robot-header">
+                <span class="robot-emoji">👁️</span>
+                <span class="robot-name">Wallet Monitor</span>
+                <span class="status-light status-green"></span>
+            </div>
+            <div class="robot-job">Spy</div>
+            <div class="robot-status">Tracking $450k trader</div>
+        </div>
+        
+        <div class="robot-card">
+            <div class="robot-header">
+                <span class="robot-emoji">🕵️</span>
+                <span class="robot-name">Copy Trade Watcher</span>
+                <span class="status-light status-yellow"></span>
+            </div>
+            <div class="robot-job">Detective</div>
+            <div class="robot-status">Analyzing 10 wallets</div>
+        </div>
+    </div>
+    
+    <div class="activity-log">
+        <h2>📋 What Happened Recently</h2>
+        <div id="logContainer">
+            <div class="log-item">
+                <span class="log-time">Just now</span>
+                <span class="log-emoji">🤖</span>
+                <span class="log-text">Oshi bought "BTC UP" for $10</span>
+            </div>
+            <div class="log-item">
+                <span class="log-time">2 min ago</span>
+                <span class="log-emoji">🕵️</span>
+                <span class="log-text">Copy Cat saw a big trader buy "BTC DOWN"</span>
+            </div>
+            <div class="log-item">
+                <span class="log-time">5 min ago</span>
+                <span class="log-emoji">✅</span>
+                <span class="log-text">Last trade won! Made $2.20</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
